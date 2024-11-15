@@ -1,0 +1,7 @@
+friction_wjs: 1
+n_chains: 1000
+steps_wjs: 1000
+max_steps_wjs: 1000
+delta_wjs: .5
+repeats_wjs: 1
+batch_size_render: 600

@@ -1,0 +1,7 @@
+name: decoder_global
+spatial: False
+hidden_dim: 2048
+code_dim: 2048
+coord_dim: 3
+n_layers: 6
+input_scale: 64

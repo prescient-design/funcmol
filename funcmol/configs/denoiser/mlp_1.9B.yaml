@@ -1,0 +1,6 @@
+# 1.9B params
+n_hidden_units: 6144
+num_blocks: 12
+n_groups: 32
+dropout: 0.
+bias_free: True

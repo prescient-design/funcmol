@@ -1,0 +1,50 @@
+defaults:
+  - dset: qm9
+  - encoder: cnn
+  - decoder: decoder_global
+  - denoiser: mlp_445M
+  - wjs: wjs_training
+  - override hydra/job_logging: custom
+  - _self_
+
+debug: False
+wandb: True
+seed: 1234
+nf_pretrained_path: exps/neural_field/nf_qm9
+exp_dir: exps/funcmol
+exp_name: "fm_${dset.dset_name}_${now:%Y%m%d}_${now:%H%M%S}_${now:%f}"
+dirname: "${exp_dir}/${exp_name}"
+reload_model_path: null
+
+# data params
+smooth_sigma: 2.0
+normalize_codes: 1
+on_the_fly: True  # use False if codes are computed offline.
+codes_dir: "${nf_pretrained_path}/codes/"
+
+# training params
+num_epochs: 50000
+dset:
+  batch_size: 2048
+sample_every: 100
+decoder:
+  code_dim: 1024
+num_augmentations: null
+
+# optim params
+lr: 1e-3
+use_lr_schedule: 0
+num_warmup_iter: 4000
+wd: 1e-2
+ema_decay: 0.9999
+
+# set the running dir
+hydra:
+  run:
+    dir: ./${dirname}
+  job:
+    config:
+      override_dirname:
+        kv_sep: ""
+        item_sep: "_"
+        exclude_keys: ["exp_dir"]

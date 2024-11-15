@@ -1,0 +1,6 @@
+# 445M parameters
+n_hidden_units: 4096
+num_blocks: 6
+n_groups: 32
+dropout: 0.
+bias_free: True

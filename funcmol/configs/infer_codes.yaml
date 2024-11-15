@@ -1,0 +1,27 @@
+defaults:
+  - override hydra/job_logging: custom
+  - _self_
+
+wandb: False
+seed: 1234
+nf_pretrained_path: None
+n_dataset_iterations: 10
+
+dirname: ${nf_pretrained_path}/codes/${split}
+
+# overwrite
+split: train
+dset:
+  data_aug: True
+  batch_size: 2000
+
+# set the running dir
+hydra:
+  run:
+    dir: ./${dirname}
+  job:
+    config:
+      override_dirname:
+        kv_sep: ""
+        item_sep: "_"
+        exclude_keys: ["exp_dir"]

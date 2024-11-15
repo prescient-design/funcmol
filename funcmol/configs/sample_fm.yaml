@@ -1,0 +1,22 @@
+defaults:
+  - wjs: wjs_sampling
+  - override hydra/job_logging: custom
+  - _self_
+
+debug: False
+wandb: False
+seed: 1234
+exp_dir: exps/funcmol
+fm_pretrained_path: exps/funcmol/fm_qm9
+dirname: ${fm_pretrained_path}/eval_s${wjs.steps_wjs}_ms${wjs.max_steps_wjs}
+
+# set the running dir
+hydra:
+  run:
+    dir: ./${dirname}
+  job:
+    config:
+      override_dirname:
+        kv_sep: ""
+        item_sep: "_"
+        exclude_keys: ["exp_dir"]

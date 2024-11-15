@@ -1,0 +1,15 @@
+dset_name: cremp
+data_dir: dataset/data
+data_aug: True
+grid_dim: 96
+resolution: .25
+atomic_radius: .5
+elements: ["C", "H", "O", "N", "F", "S"]
+n_channels: 6
+n_points: 4_000
+subsampling_ratio: 6
+
+num_workers: 2
+batch_size: 96
+lr_enc: 1e-4
+lr_dec: 5e-4

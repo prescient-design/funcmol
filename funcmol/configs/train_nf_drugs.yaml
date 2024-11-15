@@ -1,0 +1,34 @@
+defaults:
+  - dset: drugs
+  - encoder: cnn
+  - decoder: decoder_global
+  - override hydra/job_logging: custom
+  - _self_
+
+debug: False
+wandb: True
+seed: 1234
+exp_dir: exps/neural_field
+exp_name: "nf_${dset.dset_name}_${now:%Y%m%d}_${now:%H%M%S}_${now:%f}"
+dirname: "${exp_dir}/${exp_name}"
+reload_model_path: null
+n_samples: None
+
+# training params
+n_epochs: 500
+eval_every: 5
+use_ema: False
+lr_decay: False
+encoder:
+  smaller: True
+
+# set the running dir
+hydra:
+  run:
+    dir: ./${dirname}
+  job:
+    config:
+      override_dirname:
+        kv_sep: ""
+        item_sep: "_"
+        exclude_keys: ["exp_dir"]
